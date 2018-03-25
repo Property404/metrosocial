@@ -1,0 +1,7 @@
+node_modules
+*.swp
+*.pyc
+*.o
+*.out
+*.exe
+*.ico
