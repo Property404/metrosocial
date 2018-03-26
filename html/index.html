@@ -2,8 +2,55 @@
 <html>
 	<head></head>
 	<body>
+		<ul id="CowList"> <!--MOO-->
+			<li>bla</li>
+		</ul>
+		<script src="js/jquery-3.3.1.min.js"></script>
 	<script>
-		var Twitter = require('twitter-node-client').Twitter;
+		console.log("Launching");
+		// Settings
+		const TWITTER_POLL_INTERVAL = 1000;
+		const HOST = "metrosocial.hpc.lab:8080/";
+
+		// Lists
+		let allPosts = [];
+		let mentionTweets = [];
+
+		// Display everything
+		function refreshList(){
+			$('#CowList').empty()
+			let cowList = document.getElementById("CowList");
+			allPosts = mentionTweets;
+			
+			for(let p of mentionTweets)
+			{
+				let newItem = document.createElement("li");
+				newItem.appendChild(document.createTextNode(p.text));
+				cowList.appendChild(newItem);
+			}
+		}
+		
+		// Update mention tweets on frontend
+		// Poll twitter every few seconds;
+		function updateMentionTweets(data)
+		{
+			console.log("Updating mention tweets!");
+			mentionTweets = data;
+			refreshList();
+		}
+		(function poll() {
+			setTimeout(function () {
+				$.ajax({
+					type: 'GET',
+					dataType: 'json',
+					url: 'twitter/timeline',
+					success: updateMentionTweets,
+					complete: poll
+				});
+			}, 1000);
+		})();
+		console.log("...");
+
 	</script>
 	</body>
 </html>
