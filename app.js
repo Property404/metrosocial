@@ -1,14 +1,21 @@
 const crypto = require('crypto')
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const mysql = require("mysql");
 const app = express();
 const fs = require("fs");
 const Twitter = require('twitter-node-client').Twitter;
-const FB = require('fb');
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
+var token = "unset";
+crypto.randomBytes(48, function(err, buffer) {
+  token = buffer.toString('hex');
+});
+app.use(session({secret: token}));
 
 const TABLE_NAME = "ms_users";
 const ERROR = "{status: 500}";
@@ -48,35 +55,41 @@ function checkAuth (req, res, next) {
 
 	next();
 }
+
 function authenticate(username, password){
 	password  = hash(password);
 	username = btoa(username)
-	rv = true
-	con.query("SELECT * FROM "+TABLE_NAME+" WHERE username="+username+" and hash="+password+";", 
-		function(err, result, fields){
+	rv = 3
+	query = "SELECT * FROM "+TABLE_NAME+" WHERE username='"+username+"' and hash='"+password+"';";
+	console.log(query);
+	con.query(query, function(err, result, fields){
 			if(err)throw err;
 			if(result.length == 0){
 				rv = false;
+				console.log("Auth failed");
+			}else{
+				console.log("Auth passed");
 			}
+			console.log(result);
+			console.log(result.length);
 		});
-	return rv;
 }
 app.post("/auth", function(req, res){
-	const username = req.body.username;
-	const password = req.body.password;
-	console.log(username);
-	console.log(password);
-	authenticated = authenticate(username, password);
-	if(authenticated)
-	{
-		req.session.authenticated = true;
-		res.redirect("/");
-	}else{
-		res.redirect("/login.html?fail=1");
-	}
+	const username = btoa(req.body.username);
+	const password = hash(req.body.password);
+	query = "SELECT * FROM "+TABLE_NAME+" WHERE username='"+username+"' and hash='"+password+"';";
+	con.query(query, function(err, result, fields){
+		if(err)throw err;
+		if(result.length == 0){
+			res.redirect("/login.html?fail=1");
+		}else{
+			req.session.authenticated = true;
+			res.redirect("/");
+		}
+		console.log(result);
+		console.log(result.length);
+	});
 });
-	
-
 app.use(checkAuth);
 
 
