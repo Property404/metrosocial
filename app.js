@@ -5,7 +5,7 @@ const Twitter = require('twitter-node-client').Twitter;
 
 // Callbacks
 const error = function (err, response, body) {
-	console.log('ERROR [%s]', err);
+	console.log('ERROR [%s]{%s}{%s}', err, response, body);
 };
 const success = function (data) {
 	console.log('Data [%s]', data);

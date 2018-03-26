@@ -9,7 +9,7 @@
 	<script>
 		console.log("Launching");
 		// Settings
-		const TWITTER_POLL_INTERVAL = 1000;
+		const TWITTER_POLL_INTERVAL = 20000;
 		const HOST = "metrosocial.hpc.lab:8080/";
 
 		// Lists
@@ -18,7 +18,7 @@
 
 		// Display everything
 		function refreshList(){
-			$('#CowList').empty()
+			$('#CowList').empty();
 			let cowList = document.getElementById("CowList");
 			allPosts = mentionTweets;
 			
@@ -32,24 +32,27 @@
 		
 		// Update mention tweets on frontend
 		// Poll twitter every few seconds;
-		function updateMentionTweets(data)
+		function pollMentionTweets() {
+			setTimeout(updateMentionTweets, TWITTER_POLL_INTERVAL);
+		};
+		function updateMentionTweets()
 		{
-			console.log("Updating mention tweets!");
-			mentionTweets = data;
-			refreshList();
-		}
-		(function poll() {
-			setTimeout(function () {
 				$.ajax({
 					type: 'GET',
 					dataType: 'json',
 					url: 'twitter/timeline',
-					success: updateMentionTweets,
-					complete: poll
+					success: function(data){
+						console.log("Updating mention tweets!");
+						mentionTweets = data;
+						refreshList();
+					},
+						complete: pollMentionTweets
 				});
-			}, 1000);
-		})();
-		console.log("...");
+		}
+		// Starting functions
+		console.log("Starting for realsies");
+		updateMentionTweets();
+		pollMentionTweets();
 
 	</script>
 	</body>
