@@ -42,7 +42,7 @@ app.post("/api/ignoreid", function(req, res){
 	const id = req.body.id;
 	idsToIgnore.push(id);
 	console.log("Ignoring " + id);
-	successWithReturn("Success in ignoration!");
+	res.send("{}");
 });
 
 // Return mentions

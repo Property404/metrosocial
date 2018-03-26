@@ -75,6 +75,10 @@ function ignoreId(id){
 			usedIds = [];
 			updateMentionTweets();
 		},
+		error: function(data){
+			console.log("ignoreId: ");
+			console.log(data);
+		}
 	});
 
 }
@@ -93,6 +97,9 @@ function postTweet(screen_name, id, status){
 			usedIds = [];
 			updateMentionTweets();
 		},
+		error: function(data){
+			console.log("Could not post tweet :(");
+		}
 	});
 }
 
@@ -104,14 +111,12 @@ function postTwitterMessage(screen_name, id, status){
 		url: 'twitter/message/',
 		data: {"screen_name": screen_name, "id":id, "status":status},
 		success: function(data){
-			if(data.status == 200){
 				console.log("Sent successfully")
 				usedIds = [];
 				updateMentionTweets();
-			}else{
+		},
+		error: function(data){
 				alert("You can't respond privately to a Twitter user who isn't following you...");
-			}
-			
 		},
 	});
 }
