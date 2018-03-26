@@ -14,11 +14,9 @@
 			<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="https://github.com/Property404">
-						<!--<img src="/img/Logo.png" width = "112" height="28">-->
-					<h1>
-
-						MetroSocial
-					</h1>
+						<h1>
+							MetroSocial
+						</h1>
 					</a>
 					<div class="navbar-burger burger" data-target="topNav">
 						<span></span>
@@ -27,15 +25,14 @@
 					</div>
 				</div>
 				<div id="topNav" class="navbar-menu">
-					<div class="">
-						<a class="navbar-item">Volunteer</a>
-					</div>
-					<div class="">
-						<a class="navbar-item">Food</a>
-					</div>
-					<div class="">
-						<a class="navbar-item">Donars</a>
-					</div>
+					<script>
+						const items = ["Volunteers", "Food", "Donars",
+							"Housing", "Children",  "Life Skills", "First Hug",
+							"Resources"];
+for(let i of items){
+	document.write("<div><a class='navbar-item'>"+i+"</a></div>");
+}
+					</script>
 				</div>
 			</div>
 		</nav>
@@ -43,23 +40,11 @@
 
 		<section class="container">
 			<div class="columns">
-				<!--
-							<li><a>Volunteer</a></li>
-							<li><a>Food</a></li>
-							<li><a>Donors</a></li>
-							<li><a>Housing</a></li>
-							<li><a>Children</a></li>
-							<li><a>Life Skills</a></li>
-							<li><a>First Hug</a></li>
-							<li><a>Resources</a></li>
-				--!>
-
 				<div class="column is-9">
 					<div id="CowList" class="box content">
 
 					</div>
 				</div>
-
 			</div>
 		</section>
 		<footer class="footer">
