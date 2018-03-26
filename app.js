@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const Twitter = require('twitter-node-client').Twitter;
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+idsToIgnore = []
 
 // Callbacks
 const error = function (err, response, body) {
@@ -30,9 +36,14 @@ app.get("/twitter/timeline/", function(req, res) {
 
 // Reply to a tweet
 app.post("/twitter/tweet/", function(req, res) { 
-	const id = req.query.id;
-	const status = req.query.status;
-	twitter.postTweet({in_response_to_status_id: id, status: status}, error, function(data){
+	const id = req.body.id
+	const status = req.body.status
+	console.log(id);
+	console.log(status);
+	console.log(req.body);
+	twitter.postTweet({in_reply_to_status_id: id, status: status}, error, function(data){
+		console.log("Posting tweet: ");
+		console.log(data);
 		res.send(data);
 	})
 });
