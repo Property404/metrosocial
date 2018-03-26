@@ -16,17 +16,17 @@
 			<div class="hero-body">
 				<div class="container has-text-centered">
 					<div class="column is-4 is-offset-4">
-						<h3 class="title has-text-grey">Login</h3>
+						<h3 class="title has-text-grey">MetroSocial</h3>
 						<p class="subtitle has-text-grey">Please login to proceed.</p>
-	<script>
-		function get(name){
-			if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-				return decodeURIComponent(name[1]);
-		}
-		if(get('fail') == 1){
-			document.write("<article class='message is-danger'><div class='message-header'>Authentication failed</div></article>");
-		}
-	</script>
+						<script>
+							function get(name){
+								if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+									return decodeURIComponent(name[1]);
+							}
+if(get('fail') == 1){
+	document.write("<article class='message is-danger'><div class='message-header'>Authentication failed</div></article>");
+}
+						</script>
 						<div class="box">
 							<form method="POST" action="/auth">
 								<div class="field">

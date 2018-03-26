@@ -90,6 +90,14 @@ app.post("/auth", function(req, res){
 		console.log(result.length);
 	});
 });
+app.get("/logout", function(req, res){
+	try{
+		delete res.session.authenticated;
+	}catch(e){
+		console.log(e);
+	}
+	res.redirect("/login.html");
+});
 app.use(checkAuth);
 
 
