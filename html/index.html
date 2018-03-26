@@ -3,12 +3,315 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Metrosocial</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+		<!-- Bulma Version 0.6.0 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" integrity="sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=" crossorigin="anonymous" />
+		<link rel="stylesheet" type="text/css" href="css/forum.css">
 	</head>
 	<body>
-		<ul id="CowList"> <!--MOO-->
-			<li>bla</li>
-		</ul>
+		<nav class="navbar is-white topNav">
+			<div class="container">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="../">
+						<img src="../images/bulma.png" width="112" height="28">
+					</a>
+					<div class="navbar-burger burger" data-target="topNav">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+
+				<div id="topNav" class="navbar-menu">
+					<div class="navbar-start">
+						<a class="navbar-item" href="forum.html">
+							Home
+						</a>
+					</div>
+
+					<div class="navbar-end">
+						<div class="navbar-item">
+							<div class="field is-grouped">
+								<p class="control">
+								<a class="button is-small">
+									<span class="icon">
+										<i class="fa fa-user-plus"></i>
+									</span>
+									<span>
+										Register
+									</span>
+								</a>
+								</p>
+								<p class="control">
+								<a class="button is-small is-info is-outlined">
+									<span class="icon">
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Login</span>
+								</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<nav class="navbar is-white">
+			<div class="container">
+				<div class="navbar-menu">
+					<div class="navbar-start">
+						<a class="navbar-item is-active" href="#">Twitter</a>
+						<a class="navbar-item" href="#">Facebook</a>
+					</div>
+					<div class="navbar-end">
+						<div class="navbar-item">
+							<input class="input" type="text" placeholder="Search forum...">
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<section class="container">
+			<div class="columns">
+				<div class="column is-3">
+					<a class="button is-primary is-block is-alt is-large" href="#">New Post</a>
+					<aside class="menu">
+						<p class="menu-label">
+						Tags
+						</p>
+						<ul class="menu-list">
+							<li><a>Volunteer</a></li>
+							<li><a>Food</a></li>
+							<li><a>Donors</a></li>
+							<li><a>Housing</a></li>
+							<li><a>Children</a></li>
+							<li><a>Life Skills</a></li>
+							<li><a>First Hug</a></li>
+							<li><a>Resources</a></li>
+						</ul>
+					</aside>
+
+				</div>
+
+				<div class="column is-9">
+					<div id="CowList" class="box content">
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+									<strong>I_Shat_In_My_Pants_ 89)i</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									My cat stole my car, what do I do?.
+									</p>
+								</div>
+								<nav class="level is-mobile">
+									<div class="level-left">
+										<a class="level-item">
+											<span class="icon is-small"><i class="fa fa-reply"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fa fa-retweet"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fa fa-heart"></i></span>
+										</a>
+									</div>
+								</nav>
+							</div>
+							<div class="media-right">
+								<button class="delete"></button>
+							</div>
+						</article>
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+									<strong>I_Shat_In_My_Pants_ 89)i</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									My cat stole my car, what do I do?.
+									</p>
+								</div>
+								<nav class="level is-mobile">
+									<div class="level-left">
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-reply"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-retweet"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-heart"></i></span>
+										</a>
+									</div>
+								</nav>
+							</div>
+							<div class="media-right">
+								<button class="delete"></button>
+							</div>
+						</article>
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+									<strong>I_Shat_In_My_Pants_ 89)i</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									My cat stole my car, what do I do?.
+									</p>
+								</div>
+								<nav class="level is-mobile">
+									<div class="level-left">
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-reply"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-retweet"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-heart"></i></span>
+										</a>
+									</div>
+								</nav>
+							</div>
+							<div class="media-right">
+								<button class="delete"></button>
+							</div>
+						</article>
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+									<strong>I_Shat_In_My_Pants_ 89)i</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									My cat stole my car, what do I do?.
+									</p>
+								</div>
+								<nav class="level is-mobile">
+									<div class="level-left">
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-reply"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-retweet"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-heart"></i></span>
+										</a>
+									</div>
+								</nav>
+							</div>
+							<div class="media-right">
+								<button class="delete"></button>
+							</div>
+						</article>
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+									<strong>I_Shat_In_My_Pants_ 89)i</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									My cat stole my car, what do I do?.
+									</p>
+								</div>
+								<nav class="level is-mobile">
+									<div class="level-left">
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-reply"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-retweet"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-heart"></i></span>
+										</a>
+									</div>
+								</nav>
+							</div>
+							<div class="media-right">
+								<button class="delete"></button>
+							</div>
+						</article>
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+									<strong>I_Shat_In_My_Pants_ 89)i</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									My cat stole my car, what do I do?.
+									</p>
+								</div>
+								<nav class="level is-mobile">
+									<div class="level-left">
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-reply"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-retweet"></i></span>
+										</a>
+										<a class="level-item">
+											<span class="icon is-small"><i class="fas fa-heart"></i></span>
+										</a>
+									</div>
+								</nav>
+							</div>
+							<div class="media-right">
+								<button class="delete"></button>
+							</div>
+						</article>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<footer class="footer">
+			<div class="container">
+				<div class="content has-text-centered">
+					<p>
+					<strong>Bulma Templates</strong> by <a href="https://github.com/dansup">Daniel Supernault</a>. The source code is licensed
+					<a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+					</p>
+					<p>
+					<a class="icon" href="https://github.com/dansup/bulma-templates">
+						<i class="fa fa-github"></i>
+					</a>
+					</p>
+				</div>
+			</div>
+		</footer>
+		<script async type="text/javascript" src="js/bulma.js"></script>
 		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/helpers.js"></script>
 		<script src="js/main.js"> </script>
 	</body>
 </html>
