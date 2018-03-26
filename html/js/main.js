@@ -40,10 +40,10 @@ function refreshList(){
 			<nav class="level is-mobile">
 			<div class="level-left">
 			<a class="level-item">
-			<span title="Message privately" class="icon is-small"><i class="fa fa-envelope"></i></span>
+			<span onClick="$('#{5}').show();id_{5}_is_private=true;" title="Message privately" class="icon is-small"><i class="fa fa-envelope"></i></span>
 			</a>
 			<a class="level-item">
-			<span onClick="$('#{5}').show();" title="Respond publically" class="icon is-small"><i class="fa fa-reply"></i></span>
+			<span onClick="$('#{5}').show();id_{5}_is_private=false;" title="Respond publically" class="icon is-small"><i class="fa fa-reply"></i></span>
 			</a>
 			</div>
 			</nav>
@@ -51,11 +51,11 @@ function refreshList(){
 			<p class="control">
 			<textarea id='ta_{5}' class="textarea" placeholder = "reply..."></textarea>
 			</p>
-			<a class="button is-info" onClick="postTweet('{5}', '{1} '+document.getElementById('ta_{5}').value);">Respond</a>
+			<a class="button is-info" onClick="(id_{5}_is_private?postTwitterMessage:postTweet)('{1}', '{5}', '{1} '+document.getElementById('ta_{5}').value);">Respond</a>
 			</div>
 			</div>
 			<div class="media-right">
-			<button class="delete"></button>
+			<button onClick="ignoreId('{5}')" class="delete"></button>
 			</div>
 			`;
 		newItem.innerHTML = String(html).format(p.name, p.handle, p.time, p.text, p.image, p.id) 
@@ -63,8 +63,24 @@ function refreshList(){
 	}
 }
 
+// Ignore an id
+function ignoreId(id){
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		url: 'api/ignoreid/',
+		data: {"id":id},
+		success: function(data){
+			console.log("Ignoring id");
+			usedIds = [];
+			updateMentionTweets();
+		},
+	});
+
+}
+
 // Post Tweet in response
-function postTweet(id, status){
+function postTweet(screen_name, id, status){
 	console.log(id);
 	console.log(status);
 	$.ajax({
@@ -74,9 +90,32 @@ function postTweet(id, status){
 		data: {"id":id, "status":status},
 		success: function(data){
 			console.log("Posted successfully")
+			usedIds = [];
+			updateMentionTweets();
 		},
 	});
 }
+
+// Post Tweet in response
+function postTwitterMessage(screen_name, id, status){
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		url: 'twitter/message/',
+		data: {"screen_name": screen_name, "id":id, "status":status},
+		success: function(data){
+			if(data.status == 200){
+				console.log("Sent successfully")
+				usedIds = [];
+				updateMentionTweets();
+			}else{
+				alert("You can't respond privately to a Twitter user who isn't following you...");
+			}
+			
+		},
+	});
+}
+
 
 // Update mention tweets on frontend
 // Poll twitter every few seconds;
