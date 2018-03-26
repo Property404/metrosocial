@@ -29,6 +29,14 @@ app.get("/twitter/timeline/", function(req, res) {
 });
 
 // Reply to a tweet
+app.post("/twitter/tweet/", function(req, res) { 
+	const id = req.query.id;
+	const status = req.query.status;
+	twitter.postTweet({in_response_to_status_id: id, status: status}, error, function(data){
+		res.send(data);
+	})
+});
+
 
 
 

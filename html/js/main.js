@@ -1,11 +1,12 @@
 		console.log("Launching");
 		// Settings
-		const TWITTER_POLL_INTERVAL = 20000;
+		const TWITTER_POLL_INTERVAL = 30000;
 		const HOST = "metrosocial.hpc.lab:8080/";
 
 		// Lists
 		let allPosts = [];
 		let mentionTweets = [];
+		let usedIds = []
 
 		// Display everything
 		function refreshList(){
@@ -13,9 +14,13 @@
 			allPosts = mentionTweets;
 			
 			// Update
-			$('#CowList').empty();
 			for(let p of allPosts)
 			{
+				if(usedIds.includes(p.id)){
+					continue;
+				}else{
+					usedIds.push(p.id);
+				}
 				let newItem = document.createElement("article");
 				newItem.className = "media"
 				let html  = `
@@ -38,18 +43,24 @@
 											<span title="Message privately" class="icon is-small"><i class="fa fa-envelope"></i></span>
 										</a>
 										<a class="level-item">
-											<span title="Respond publically" class="icon is-small"><i class="fa fa-reply"></i></span>
+											<span onClick="$('#{5}').show();" title="Respond publically" class="icon is-small"><i class="fa fa-reply"></i></span>
 										</a>
 									</div>
 								</nav>
+								<div class="field" hidden=true id={5}>
+									<p class="control">
+										<textarea class="textarea" placeholder = "reply..."></textarea>
+									</p>
+									<a class="button is-info" onClick="">Respond</a>
+								</div>
 							</div>
 							<div class="media-right">
 								<button class="delete"></button>
 							</div>
 					`;
-				newItem.innerHTML = String(html).format(p.name, p.handle, p.time, p.text, p.image);
+				newItem.innerHTML = String(html).format(p.name, p.handle, p.time, p.text, p.image, p.id) 
 				console.log(p.image)
-				cowList.appendChild(newItem);
+				cowList.prepend(newItem);
 			}
 		}
 		
@@ -72,6 +83,7 @@
 								t.user.id_str, handle: "@"+t.user.screen_name, text: t.text, time:t.created_at,
 							image: t.user.profile_image_url.replace("//", "").replace("http:", "http://")});
 						}
+						mentionTweets.reverse();
 
 						console.log(mentionTweets);
 						refreshList();
